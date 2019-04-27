@@ -4,13 +4,13 @@ A NLP Model that detects **cues (words that cause negation)** and **scope (negat
 
 # Evaluation results
 
-<img width="644" alt="eval1" src="https://user-images.githubusercontent.com/29833297/56854442-37738e00-6954-11e9-9bd9-e8c0539f66c7.PNG">
+<img width="700" alt="eval1" src="https://user-images.githubusercontent.com/29833297/56854442-37738e00-6954-11e9-9bd9-e8c0539f66c7.PNG">
 
-<img width="632" alt="eval2" src="https://user-images.githubusercontent.com/29833297/56854443-393d5180-6954-11e9-9b28-12b1b137b851.PNG">
+<img width="700" alt="eval2" src="https://user-images.githubusercontent.com/29833297/56854443-393d5180-6954-11e9-9b28-12b1b137b851.PNG">
 
 # Dataset
 
-<img width="266" alt="table_of_stats" src="https://user-images.githubusercontent.com/29833297/56854595-b9fd4d00-6956-11e9-8346-0d77f3350c79.PNG">
+<img width="400" alt="table_of_stats" src="https://user-images.githubusercontent.com/29833297/56854595-b9fd4d00-6956-11e9-8346-0d77f3350c79.PNG">
 
 Data included text from Arthur Conan Doyle's famous book *Hounds of Baskerville*. The text was stored in the CONLL format with the following column descriptions.
 - Column 1: book name
@@ -60,7 +60,7 @@ The dependency path from token “telegram” to cue “No” is:
 		- ‘\’ represents moving up the tree
 		- ‘/’ represents moving down the tree
 		
-<img width="330" alt="dep_tree" src="https://user-images.githubusercontent.com/29833297/56854591-a651e680-6956-11e9-849f-9357b8b76e55.PNG">
+<img width="500" alt="dep_tree" src="https://user-images.githubusercontent.com/29833297/56854591-a651e680-6956-11e9-849f-9357b8b76e55.PNG">
 
 # Vectorization
 
@@ -72,7 +72,7 @@ The dependency path from token “telegram” to cue “No” is:
 
 # Classifiers used
 
-<img width="246" alt="scopeisnt" src="https://user-images.githubusercontent.com/29833297/56854447-44907d00-6954-11e9-9341-0a21e1b4acab.jpeg">
+<img width="300" alt="scopeisnt" src="https://user-images.githubusercontent.com/29833297/56854447-44907d00-6954-11e9-9341-0a21e1b4acab.jpeg">
 
 - **For cue classification**
 
