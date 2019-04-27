@@ -39,28 +39,15 @@ The sentences are stored in the form of dictionaries. Each word in a sentence, i
 
 - First step is to obtain a dictionary of all possible cues in the training dataset, as well as their respective affix [prefix, suffix, infix] cues.
 - Cues that do are not affixes are denoted by ‘s’ and those with affixes are denoted by ‘a’.
-- Features selected for classification of the cues are:
-		- Token 
-		- Lemma 
-		- Part of Speech tag
-		- Previous and Next words
-		- Character 5-bigrams, for afﬁxal cues
+- Features selected for classification of the cues are: *Token, Lemma, Part of Speech tag, Previous and Next words and Character 5-bigrams, for afﬁxal cues.*
   
 Cue labels are assigned to each cue instance, based on their occurrence in the dataset. Treated as a **binary classification problem where label 1 (cue) and -1 (non-cue)**.
 
 # Feature extraction for scope
 
-<img width="246" alt="scopeisnt" src="https://user-images.githubusercontent.com/29833297/56854516-8f5ec480-6955-11e9-8f03-e5b5519b8688.PNG"
+<img width="246" alt="scopeisnt" src="https://user-images.githubusercontent.com/29833297/56854516-8f5ec480-6955-11e9-8f03-e5b5519b8688.PNG">
 
-- Features selected for classification of the scopes are:
-		- Token
-		- Lemma
-		- Part of Speech tag (PoS)
-		- PoS of next and previous words
-		- Graph distance of token to cue
-		- Dependency path from token to cue
-		- PoS of the cue
-		- Cue type
+- Features selected for classification of the scopes are: *Token, Lemma, Part of Speech tag (PoS), PoS of next and previous words, Graph distance of token to cue, Dependency path from token to cue, PoS of the cue and Cue type.*
 		
 - Distance from token to cue is calculated using Dijkstra's algorithm and treated as a separate feature. In the following figure, distance between the token “telegram” to cue “No” and is 3.
 - Dependency path is the shortest path between token and cue, containing all the dependency relations of the words along the path.
@@ -80,16 +67,17 @@ The dependency path from token “telegram” to cue “No” is:
 
 # Classifiers used
 
-
-![WhatsApp Image 2018-12-16 at 10 09 58 PM](https://user-images.githubusercontent.com/29833297/56854447-44907d00-6954-11e9-9341-0a21e1b4acab.jpeg)
+<img width="246" alt="scopeisnt" src="https://user-images.githubusercontent.com/29833297/56854447-44907d00-6954-11e9-9341-0a21e1b4acab.jpeg">
 
 - **For cue classification**
-	The classification of the cues was looked at as a binary classification, as we can identify cues in isolation, irrespective of the sentences that they were part of. 
+
+The classification of the cues was looked at as a binary classification, as we can identify cues in isolation, irrespective of the sentences that they were part of. 
 We considered using SVM classifiers for this classification. SVC works by creating a hyperplane that divides the data space into the 2 classes.
 However, we realised that there were instances where some cues did not always act as cues, which resulted in overlapping of the two classes. Hence we decided on using a kind of penalty parameter that would create a *less stricter classifier than SVC*.
 Therefore, we implemented the **NSlackSSVM** which introduced slack variables which relaxes the constraints on the hyperplane by implementing marginal hyperplanes. The error for a training data point on the wrong side of the marginal hyperplane was calculated which helped determine the ideal hyperplane.
 
 - **For scope classification**
+
 The sentence can be interpreted as a sequence of tokens, hence the task of scope resolution is to label each token in the sentence as in or out of scope. For sequence labelling, statistical models have shown to be useful because the label of a state i in a sequence typically depends on the i-1 already observed states. 
 The output classes are the 4 labels provided to these scopes.
 It is a discriminative model which contains a compatibility function which uses approaches like **Conditional Random Field (ChainCRF)**
