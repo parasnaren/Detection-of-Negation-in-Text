@@ -10,15 +10,18 @@ A NLP Model that detects **cues (words that cause negation)** and **scope (negat
 
 # Dataset
 
+<img width="266" alt="table_of_stats" src="https://user-images.githubusercontent.com/29833297/56854595-b9fd4d00-6956-11e9-8346-0d77f3350c79.PNG">
+
 Data included text from Arthur Conan Doyle's famous book *Hounds of Baskerville*. The text was stored in the CONLL format with the following column descriptions.
 - Column 1: book name
 - Column 2: sentence number
 - Column 3: token number
-− Column 4: word 
-− Column 5: lemma of the word 
-− Column 6: Part of Speech tag of the word
+- Column 4: word 
+- Column 5: lemma of the word 
+- Column 6: Part of Speech tag of the word
 - Column 7: parse tree information 
-Column 8: The negation information 
+- Column 8: The negation information
+
 Columns after index 8 follow the pattern of :
 [Cue, Scope, Negated event] correspondingly.
 
@@ -56,6 +59,8 @@ The dependency path from token “telegram” to cue “No” is:
 		
 		- ‘\’ represents moving up the tree
 		- ‘/’ represents moving down the tree
+		
+<img width="330" alt="dep_tree" src="https://user-images.githubusercontent.com/29833297/56854591-a651e680-6956-11e9-849f-9357b8b76e55.PNG">
 
 # Vectorization
 
