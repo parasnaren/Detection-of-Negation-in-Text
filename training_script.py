@@ -1,5 +1,6 @@
 import numpy as np
 from sklearn.feature_extraction import DictVectorizer
+from sklearn.svm import SVC
 from pystruct.models import BinaryClf
 from pystruct.learners import NSlackSSVM
 from data_processing import *
@@ -99,7 +100,12 @@ def extract_labels_cue(sentence_dicts, cue_dict, affix_cue_dict):
                     labels.append(-1)
     return np.asarray(labels)
 
-filename = trainfile
+#
+newfilename = "training_actual.txt"
+filename = "dev.txt"
+#
+
+
 def cue_trainer(filename, corenlp):
     newfilename = process_data(filename, corenlp)
     sentence_dicts = file_to_sentence_dict(newfilename)
@@ -108,6 +114,7 @@ def cue_trainer(filename, corenlp):
     cue_vec = DictVectorizer()
     model = cue_vec.fit_transform(cue_instances).toarray()
     cue_ssvm = NSlackSSVM(BinaryClf(), C=0.2, batch_size=-1)
+    #cue_ssvm = SVC(C = 0.2)
     cue_ssvm.fit(model, cue_labels)
     return sentence_dicts, cue_ssvm, cue_vec, cue_dict, affix_cue_dict
 

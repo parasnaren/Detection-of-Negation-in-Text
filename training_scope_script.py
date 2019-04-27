@@ -82,8 +82,8 @@ def extract_features_scope(sentence_dicts, mode='training'):
     for sent in sentence_dicts:
         if not sent['neg']:
             continue
-        graph = make_dir_graph_for_sentence(sent)
-        bidir_graph = make_bidir_graph_for_sentence(sent)
+        graph = make_dir_graph_for_sentence(sent)   # create directed path between token and cue
+        bidir_graph = make_bidir_graph_for_sentence(sent)   # creates dependency graph for each
         for cue_i, (cue, cue_position, cue_type) in enumerate(sent['cues']):
             seq_length = -1
             for key, value in sent.items():

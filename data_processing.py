@@ -1,31 +1,6 @@
 import subprocess
 import re
 
-"""def predict_neg_event(tempfilename):
-    data2 = open('temp.txt', 'w')
-    pat = re.compile('v')
-    flag = 1
-    with open(tempfilename, 'r') as data:
-        for line in data:
-            if line == '\n':
-                data2.write(line)
-                flag = 1
-                continue
-            words = line.split()
-            if len(words) > 8 and flag:
-                if pat.search(words[5].lower()) or pat.search(words[6].lower()):
-                    words[9]=words[8]
-                    flag = 0
-            sent = '\t'.join(words)
-            data2.write(sent+'\n')            
-    data2.close()
-    
-    #name = tempfilename.split('.')[0]+'_final.txt'
-    with open(tempfilename, 'w') as file2, open('temp.txt', 'r') as file1:
-        for line in file1:
-            file2.write(line)
-    return tempfilename"""
-
 def file_to_sentence_dict(filename):
     with open(filename, 'r') as infile:
         sentence = {}
@@ -37,7 +12,7 @@ def file_to_sentence_dict(filename):
         counter = 0
         cue_counter = 0
         prev_cue_column = -1
-        lower_limit = 3
+        lower_limit = 35
         upper_limit = 7
         cue_offset = upper_limit - 5
         instances = []
@@ -247,7 +222,10 @@ def adding_head_index(conllfilename, filename):
         i+=1
     write_text_to_file(actual, newfilename)
     return newfilename
-            
+
+#filename = "training.txt"
+#corenlp = "E:\MACHINE LEARNING\Phillips Hackathon\Round_3\stanford-corenlp-full-2018-10-05"
+
 def process_data(filename, corenlp):
     raw_filename = convert_file_to_raw(filename) 
     absolute_path = corenlp + "/*"

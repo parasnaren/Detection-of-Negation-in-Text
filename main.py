@@ -22,9 +22,9 @@ if __name__ == '__main__':
     print("Training file: ",trainfile)
     print("Testing file: ",testfile)
     
-    #trainfile = 'training.txt'
+    trainfile = 'training.txt'
     #testfile = 'cardboard.txt'
-    filename = 'training.txt'
+    #filename = 'training.txt'
     
     #-t training.txt -s test.txt -c 'E:\MACHINE LEARNING\Phillips Hackathon\Round_3\stanford-corenlp-full-2018-10-05'
     #print(trainfile, testfile, corenlp)
