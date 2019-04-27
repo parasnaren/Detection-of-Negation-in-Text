@@ -2,15 +2,19 @@
 
 A NLP Model that detects **cues (words that cause negation)** and **scope (negated part of the sentence)**.
 
+
+
 # Evaluation results
 
 <img width="700" alt="eval1" src="https://user-images.githubusercontent.com/29833297/56854442-37738e00-6954-11e9-9bd9-e8c0539f66c7.PNG">
 
 <img width="700" alt="eval2" src="https://user-images.githubusercontent.com/29833297/56854443-393d5180-6954-11e9-9b28-12b1b137b851.PNG">
 
+
+
 # Dataset
 
-<img width="400" alt="table_of_stats" src="https://user-images.githubusercontent.com/29833297/56854595-b9fd4d00-6956-11e9-8346-0d77f3350c79.PNG">
+<img width="500" alt="table_of_stats" src="https://user-images.githubusercontent.com/29833297/56854595-b9fd4d00-6956-11e9-8346-0d77f3350c79.PNG">
 
 Data included text from Arthur Conan Doyle's famous book *Hounds of Baskerville*. The text was stored in the CONLL format with the following column descriptions.
 - Column 1: book name
@@ -25,7 +29,9 @@ Data included text from Arthur Conan Doyle's famous book *Hounds of Baskerville*
 Columns after index 8 follow the pattern of :
 [Cue, Scope, Negated event] correspondingly.
 
-<img width="763" alt="beforeprocess" src="https://user-images.githubusercontent.com/29833297/56854437-27f44500-6954-11e9-8268-fa51296e3adf.PNG">
+<img width="700" alt="beforeprocess" src="https://user-images.githubusercontent.com/29833297/56854437-27f44500-6954-11e9-8268-fa51296e3adf.PNG">
+
+
 
 # Preprocessing
 
@@ -33,6 +39,9 @@ We took the following steps to pre-process the data into a favourable format:
 
 - Converted the dataset into a raw format by extracting the tokens from each line (at index 3).
 - We then implemented the **StandfordCoreNLP Dependency parser**, that parsed the data and created a dependency tree for each sentence, which created dependency relations between words, that helped us determining scopes.
+
+
+
 
 # Feature extraction for cues
 
@@ -45,6 +54,8 @@ The sentences are stored in the form of dictionaries. Each word in a sentence, i
 - Features selected for classification of the cues are: *Token, Lemma, Part of Speech tag, Previous and Next words and Character 5-bigrams, for afﬁxal cues.*
   
 Cue labels are assigned to each cue instance, based on their occurrence in the dataset. Treated as a **binary classification problem where label 1 (cue) and -1 (non-cue)**.
+
+
 
 # Feature extraction for scope
 
@@ -62,6 +73,8 @@ The dependency path from token “telegram” to cue “No” is:
 		
 <img width="500" alt="dep_tree" src="https://user-images.githubusercontent.com/29833297/56854591-a651e680-6956-11e9-849f-9357b8b76e55.PNG">
 
+
+
 # Vectorization
 
 - After generating the dictionaries and extracting the features, we convert our feature dictionaries into binary vectors.  
@@ -69,6 +82,8 @@ The dependency path from token “telegram” to cue “No” is:
 - To do the vectorisation, we use DictVectorizer from the SCIKIT-LEARN toolkit. This module creates a vector for each feature and then concatenates them so we end up with a single feature vector for each instance.
 - For cues, we vectorise the data space for each potential cue token.
 - For scopes, we vectorise the data space for each sentence that contains a cue.
+
+
 
 # Classifiers used
 
